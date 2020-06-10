@@ -1,10 +1,10 @@
 {
-  "name": "gatsby-starter-prismic-i18n",
+  "name": "nt-2020",
   "description": "Based on gatsby-starter-prismic with Internationalization (i18n) support",
   "private": true,
   "license": "MIT",
   "version": "1.0.0",
-  "author": "LekoArts <hello@lekoarts.de>",
+  "author": "Nico Domino <ndomino@newtelco.de>",
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop -o",
@@ -14,6 +14,7 @@
     "lint:fix": "eslint . --ext .js,.jsx --fix --ignore-path .gitignore",
     "lint:ci": "yarn lint --format junit -o results/eslint/result.xml",
     "format": "prettier \"**/*.md \" --write",
+    "format:code": "prettier \"src/**/* \" --write",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "cy:run:ci": "cypress run --browser chrome --reporter junit --reporter-options 'mochaFile=results/cypress/result.xml'",
@@ -76,10 +77,13 @@
   },
   "keywords": [
     "gatsby",
-    "starter",
-    "prismic",
-    "typography",
-    "minimal",
-    "gatsby-starter"
-  ]
+    "prismic"
+  ],
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "semi": false,
+    "jsxSingleQuote": true,
+    "arrowParens": "avoid"
+  }
 }

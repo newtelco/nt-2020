@@ -50,8 +50,9 @@ const Social = styled.ul`
   display: flex;
   flex-wrap: wrap;
   margin-left: 0;
-  font-family: 'Source Sans Pro', -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial',
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: 'Source Sans Pro', -apple-system, 'BlinkMacSystemFont',
+    'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
   li {
     display: inline;
     &:not([data-name='social-entry-0']) {
@@ -96,7 +97,11 @@ const ProjectListing = styled.ul`
 
 const IndexWrapper = Wrapper.withComponent('main')
 
-const Index = ({ data: { homepage, social, posts, projects }, pageContext: { locale }, location }) => {
+const Index = ({
+  data: { homepage, social, posts, projects },
+  pageContext: { locale },
+  location,
+}) => {
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
 
@@ -106,17 +111,25 @@ const Index = ({ data: { homepage, social, posts, projects }, pageContext: { loc
       <Hero>
         <HeroInner>
           <h1>{homepage.data.title.text}</h1>
-          <HeroText dangerouslySetInnerHTML={{ __html: homepage.data.content.html }} />
+          <HeroText
+            dangerouslySetInnerHTML={{ __html: homepage.data.content.html }}
+          />
           <Social>
             {social.edges[0].node.data.body.map((s, index) => (
-              <li data-name={`social-entry-${index}`} key={s.primary.label.text}>
+              <li
+                data-name={`social-entry-${index}`}
+                key={s.primary.label.text}
+              >
                 <a href={s.primary.link.url}>{s.primary.label.text}</a>
               </li>
             ))}
           </Social>
         </HeroInner>
       </Hero>
-      <IndexWrapper id={website.skipNavId} style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+      <IndexWrapper
+        id={website.skipNavId}
+        style={{ paddingTop: '2rem', paddingBottom: '2rem' }}
+      >
         <Title style={{ marginTop: '4rem' }}>{i18n.recent} Posts</Title>
         <Listing posts={posts.edges} />
         <Title style={{ marginTop: '8rem' }}>
@@ -125,7 +138,9 @@ const Index = ({ data: { homepage, social, posts, projects }, pageContext: { loc
         <ProjectListing>
           {projects.edges[0].node.data.body.map(project => (
             <li key={project.primary.label.text}>
-              <a href={project.primary.link.url}>{project.primary.label.text}</a>
+              <a href={project.primary.link.url}>
+                {project.primary.label.text}
+              </a>
             </li>
           ))}
         </ProjectListing>
@@ -179,7 +194,10 @@ export const pageQuery = graphql`
         }
       }
     }
-    posts: allPrismicPost(sort: { fields: [data___date], order: DESC }, filter: { lang: { eq: $locale } }) {
+    posts: allPrismicPost(
+      sort: { fields: [data___date], order: DESC }
+      filter: { lang: { eq: $locale } }
+    ) {
       edges {
         node {
           uid

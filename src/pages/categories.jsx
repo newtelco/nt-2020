@@ -38,14 +38,22 @@ const LocaleSwitcherStyle = theme => css`
 
 const CatWrapper = Wrapper.withComponent('main')
 
-const Categories = ({ location, data: { categories }, pageContext: { locale } }) => {
+const Categories = ({
+  location,
+  data: { categories },
+  pageContext: { locale },
+}) => {
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
 
   return (
     <>
       <Global styles={LocaleSwitcherStyle} />
-      <SEO title={`${i18n.allCategories} | ${i18n.defaultTitleAlt}`} pathname={location.pathname} locale={locale} />
+      <SEO
+        title={`${i18n.allCategories} | ${i18n.defaultTitleAlt}`}
+        pathname={location.pathname}
+        locale={locale}
+      />
       <Hero>
         <Wrapper>
           <Header invert />
@@ -58,7 +66,10 @@ const Categories = ({ location, data: { categories }, pageContext: { locale } })
         </Title>
         <List>
           {categories.edges.map(cat => (
-            <LocalizedLink key={cat.node.data.name} to={`/categories/${kebabCase(cat.node.data.name)}`}>
+            <LocalizedLink
+              key={cat.node.data.name}
+              to={`/categories/${kebabCase(cat.node.data.name)}`}
+            >
               {cat.node.data.name}
             </LocalizedLink>
           ))}
@@ -85,7 +96,10 @@ Categories.propTypes = {
 
 export const pageQuery = graphql`
   query CategoriesOverview($locale: String!) {
-    categories: allPrismicCategory(filter: { lang: { eq: $locale } }, sort: { fields: [data___name], order: ASC }) {
+    categories: allPrismicCategory(
+      filter: { lang: { eq: $locale } }
+      sort: { fields: [data___name], order: ASC }
+    ) {
       totalCount
       edges {
         node {

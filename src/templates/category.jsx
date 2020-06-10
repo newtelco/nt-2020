@@ -19,8 +19,9 @@ const Hero = styled.header`
 `
 
 const Headline = styled.p`
-  font-family: 'Source Sans Pro', -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial',
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: 'Source Sans Pro', -apple-system, 'BlinkMacSystemFont',
+    'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
   color: ${props => props.theme.colors.greyBlue};
   font-size: 1.25rem;
   a {
@@ -67,8 +68,9 @@ const Category = ({
       </Hero>
       <CatWrapper id={website.skipNavId}>
         <Title style={{ marginTop: '4rem' }}>
-          {totalCount} {totalCount === 1 ? 'Post' : 'Posts'} {totalCount === 1 ? i18n.was : i18n.were} {i18n.tagged} "
-          {category}" – <LocalizedLink to="/categories">{i18n.allCategories}</LocalizedLink>
+          {totalCount} {totalCount === 1 ? 'Post' : 'Posts'}{' '}
+          {totalCount === 1 ? i18n.was : i18n.were} {i18n.tagged} "{category}" –{' '}
+          <LocalizedLink to='/categories'>{i18n.allCategories}</LocalizedLink>
         </Title>
         <Listing posts={edges} />
       </CatWrapper>
@@ -97,7 +99,13 @@ export const pageQuery = graphql`
       sort: { fields: [data___date], order: DESC }
       filter: {
         data: {
-          categories: { elemMatch: { category: { document: { elemMatch: { data: { name: { eq: $category } } } } } } }
+          categories: {
+            elemMatch: {
+              category: {
+                document: { elemMatch: { data: { name: { eq: $category } } } }
+              }
+            }
+          }
         }
         lang: { eq: $locale }
       }

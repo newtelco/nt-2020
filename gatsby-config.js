@@ -22,6 +22,7 @@ module.exports = {
     facebook: website.facebook,
   },
   /* Plugins */
+
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-emotion',
@@ -29,7 +30,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-prismic',
       options: {
-        repositoryName: 'gatsby-starter-prismic',
+        repositoryName: 'newtelco-i18n',
         accessToken: `${process.env.API_KEY}`,
         // Get the correct URLs in blog posts
         linkResolver: () => prismicLinkResolver,

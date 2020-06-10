@@ -7,7 +7,11 @@ const Content = styled.div`
   max-width: ${props => props.theme.maxWidthText};
 `
 
-const CodeBlock = ({ input }) => <Content dangerouslySetInnerHTML={{ __html: input.primary.code_block.html }} />
+const CodeBlock = ({ input }) => (
+  <Content
+    dangerouslySetInnerHTML={{ __html: input.primary.code_block.html }}
+  />
+)
 
 export default CodeBlock
 

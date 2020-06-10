@@ -94,12 +94,12 @@ const Layout = ({ children, pageContext: { locale } }) => {
         <>
           <Global styles={globalStyle} />
           <SkipNavLink />
-          <LocaleSwitcher data-name="locale-switcher">
-            <Link hrefLang="de-de" to="/">
+          <LocaleSwitcher data-name='locale-switcher'>
+            <Link hrefLang='de-de' to='/'>
               DE
             </Link>{' '}
             /{' '}
-            <Link hrefLang="en-gb" to="/en">
+            <Link hrefLang='en-gb' to='/en'>
               EN
             </Link>
           </LocaleSwitcher>

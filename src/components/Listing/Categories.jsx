@@ -8,7 +8,9 @@ const Categories = ({ categories }) => (
     {categories.map((cat, i) => (
       <React.Fragment key={cat}>
         {!!i && ', '}
-        <LocalizedLink to={`/categories/${kebabCase(cat)}`}>{cat}</LocalizedLink>
+        <LocalizedLink to={`/categories/${kebabCase(cat)}`}>
+          {cat}
+        </LocalizedLink>
       </React.Fragment>
     ))}
   </>

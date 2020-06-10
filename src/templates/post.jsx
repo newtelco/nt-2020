@@ -15,8 +15,9 @@ const Hero = styled.header`
 `
 
 const Headline = styled.p`
-  font-family: 'Source Sans Pro', -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial',
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: 'Source Sans Pro', -apple-system, 'BlinkMacSystemFont',
+    'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
   color: ${props => props.theme.colors.grey};
   font-size: 1.25rem;
   a {
@@ -27,7 +28,11 @@ const Headline = styled.p`
 
 const PostWrapper = Wrapper.withComponent('main')
 
-const Post = ({ data: { prismicPost, posts }, location, pageContext: { locale } }) => {
+const Post = ({
+  data: { prismicPost, posts },
+  location,
+  pageContext: { locale },
+}) => {
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
 
@@ -148,7 +153,11 @@ export const pageQuery = graphql`
         }
       }
     }
-    posts: allPrismicPost(limit: 2, sort: { fields: [data___date], order: DESC }, filter: { lang: { eq: $locale } }) {
+    posts: allPrismicPost(
+      limit: 2
+      sort: { fields: [data___date], order: DESC }
+      filter: { lang: { eq: $locale } }
+    ) {
       edges {
         node {
           uid

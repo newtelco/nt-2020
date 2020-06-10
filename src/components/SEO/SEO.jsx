@@ -10,11 +10,24 @@ import i18n from '../../../config/i18n'
 
 const SEO = ({ title, desc, banner, pathname, article, node, locale }) => {
   const { site } = useStaticQuery(query)
-  const { defaultTitle, defaultDescription, siteLanguage, headline, categories } = i18n[locale]
+  const {
+    defaultTitle,
+    defaultDescription,
+    siteLanguage,
+    headline,
+    categories,
+  } = i18n[locale]
 
   const {
     buildTime,
-    siteMetadata: { siteUrl, defaultBanner, ogLanguage, author, twitter, facebook },
+    siteMetadata: {
+      siteUrl,
+      defaultBanner,
+      ogLanguage,
+      author,
+      twitter,
+      facebook,
+    },
   } = site
 
   const localizedPath = i18n[locale].default ? '' : `/${i18n[locale].path}`
@@ -149,13 +162,21 @@ const SEO = ({ title, desc, banner, pathname, article, node, locale }) => {
     <>
       <Helmet title={seo.title}>
         <html lang={siteLanguage} />
-        <meta name="description" content={seo.description} />
-        <meta name="image" content={seo.image} />
-        <meta name="gatsby-starter" content="Gatsby Starter Prismic i18n" />
+        <meta name='description' content={seo.description} />
+        <meta name='image' content={seo.image} />
+        <meta name='gatsby-starter' content='Gatsby Starter Prismic i18n' />
         {/* Insert schema.org data conditionally (webpage/article) + everytime (breadcrumbs) */}
-        {!article && <script type="application/ld+json">{JSON.stringify(schemaOrgWebPage)}</script>}
-        {article && <script type="application/ld+json">{JSON.stringify(schemaArticle)}</script>}
-        <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
+        {!article && (
+          <script type='application/ld+json'>
+            {JSON.stringify(schemaOrgWebPage)}
+          </script>
+        )}
+        {article && (
+          <script type='application/ld+json'>
+            {JSON.stringify(schemaArticle)}
+          </script>
+        )}
+        <script type='application/ld+json'>{JSON.stringify(breadcrumb)}</script>
       </Helmet>
       <Facebook
         desc={seo.description}
@@ -166,7 +187,12 @@ const SEO = ({ title, desc, banner, pathname, article, node, locale }) => {
         locale={ogLanguage}
         name={facebook}
       />
-      <Twitter title={seo.title} image={seo.image} desc={seo.description} username={twitter} />
+      <Twitter
+        title={seo.title}
+        image={seo.image}
+        desc={seo.description}
+        username={twitter}
+      />
     </>
   )
 }
